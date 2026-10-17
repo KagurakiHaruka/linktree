@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link in Bio | Budi Santoso</title>
+    
+    <!-- Modern Bold Typography: Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                    },
+                    colors: {
+                        black: '#0a0a0a',
+                        white: '#ffffff',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Geometric Split Background */
+        .split-bg {
+            background: linear-gradient(135deg, #ffffff 50%, #0a0a0a 50%);
+            background-attachment: fixed;
+        }
+
+        /* Smooth Entrance Animation */
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-slide-up {
+            animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+    </style>
+</head>
+<body class="split-bg min-h-screen font-sans flex items-center justify-center py-10 px-4 selection:bg-black selection:text-white">
+
+    <!-- Main Card Container -->
+    <main class="w-full max-w-md bg-black text-white rounded-[2.5rem] p-8 md:p-10 shadow-2xl border-4 border-white relative overflow-hidden animate-slide-up">
+        
+        <!-- Subtle Geometric Accent inside card -->
+        <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-bl-full opacity-10 pointer-events-none"></div>
+
+        <!-- Profile Section -->
+        <header class="relative z-10 flex flex-col items-center mb-10">
+            <!-- Profile Picture with Stark Border -->
+            <div class="relative group cursor-pointer animate-slide-up stagger-1 mb-5">
+                <div class="absolute inset-0 bg-white rounded-full scale-105 group-hover:scale-110 transition-transform duration-500"></div>
+                <img src="https://i.pravatar.cc/150?img=11" alt="Budi Santoso" class="relative w-28 h-28 rounded-full object-cover border-4 border-black grayscale group-hover:grayscale-0 transition-all duration-500 z-10">
+            </div>
+            
+            <!-- Name & Bio -->
+            <h1 class="text-3xl font-bold tracking-tight mb-2 text-center animate-slide-up stagger-2">Budi Santoso</h1>
+            <p class="text-gray-400 font-medium text-center animate-slide-up stagger-3 px-2">
+                Creative Director & Web Developer.<br/>Building modern digital experiences.
+            </p>
+        </header>
+
+        <!-- Links Section -->
+        <nav class="relative z-10 w-full flex flex-col gap-4">
+            
+            <!-- Button 1: Portfolio -->
+            <a href="#" class="animate-slide-up stagger-4 group flex items-center justify-between px-6 py-4 rounded-full border-2 border-white bg-black hover:bg-white hover:text-black text-white transition-all duration-300 ease-out shadow-[0_0_0_0_rgba(255,255,255,0)] hover:shadow-[0_8px_20px_-8px_rgba(255,255,255,0.8)]">
+                <div class="flex items-center gap-4">
+                    <i class="fa-solid fa-briefcase text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                    <span class="font-bold text-lg tracking-wide">Portfolio</span>
+                </div>
+                <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+            </a>
+
+            <!-- Button 2: Instagram -->
+            <a href="#" class="animate-slide-up stagger-4 group flex items-center justify-between px-6 py-4 rounded-full border-2 border-white bg-black hover:bg-white hover:text-black text-white transition-all duration-300 ease-out shadow-[0_0_0_0_rgba(255,255,255,0)] hover:shadow-[0_8px_20px_-8px_rgba(255,255,255,0.8)]">
+                <div class="flex items-center gap-4">
+                    <i class="fa-brands fa-instagram text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                    <span class="font-bold text-lg tracking-wide">Instagram</span>
+                </div>
+                <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+            </a>
+
+            <!-- Button 3: X / Twitter -->
+            <a href="#" class="animate-slide-up stagger-5 group flex items-center justify-between px-6 py-4 rounded-full border-2 border-white bg-black hover:bg-white hover:text-black text-white transition-all duration-300 ease-out shadow-[0_0_0_0_rgba(255,255,255,0)] hover:shadow-[0_8px_20px_-8px_rgba(255,255,255,0.8)]">
+                <div class="flex items-center gap-4">
+                    <i class="fa-brands fa-x-twitter text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                    <span class="font-bold text-lg tracking-wide">X / Twitter</span>
+                </div>
+                <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+            </a>
+
+            <!-- Button 4: Contact -->
+            <a href="#" class="animate-slide-up stagger-5 group flex items-center justify-between px-6 py-4 rounded-full border-2 border-white bg-black hover:bg-white hover:text-black text-white transition-all duration-300 ease-out shadow-[0_0_0_0_rgba(255,255,255,0)] hover:shadow-[0_8px_20px_-8px_rgba(255,255,255,0.8)]">
+                <div class="flex items-center gap-4">
+                    <i class="fa-regular fa-envelope text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                    <span class="font-bold text-lg tracking-wide">Get in Touch</span>
+                </div>
+                <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+            </a>
+
+        </nav>
+        
+        <!-- Footer -->
+        <footer class="relative z-10 mt-12 text-center animate-slide-up stagger-5">
+            <div class="inline-block px-4 py-2 border border-gray-800 rounded-full">
+                <p class="text-gray-500 text-xs font-semibold tracking-widest uppercase">
+                    &copy; 2026 Budi Santoso
+                </p>
+            </div>
+        </footer>
+    </main>
+
+</body>
+</html>
