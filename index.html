@@ -1,750 +1,658 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio | Sarjana S1 Informatika</title>
+    <title>Sleepycatz</title>
+    
+    <!-- Modern Bold Typography: Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-bundle@2.12.0/tsparticles.bundle.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                    },
+                    colors: {
+                        black: '#0a0a0a',
+                        white: '#ffffff',
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
-        /* CSS Variabel & Reset */
-        :root {
-            --black: #000000;
-            --white: #ffffff;
-            --gray: #e5e7eb;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--white);
-            color: var(--black);
-            overflow-x: hidden;
+        /* Animated Fluid Background */
+        .animated-bg {
+            background: linear-gradient(-45deg, #050505, #1a1a1a, #2a2a2a, #0a0a0a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            background-attachment: fixed;
+            perspective: 1000px; /* For 3D Tilt Effect */
         }
 
-        h1, h2, h3, h4, .font-display {
-            font-family: 'Space Grotesk', sans-serif;
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* Latar Belakang Pola Grid */
-        .bg-grid {
-            background-image: 
-                linear-gradient(to right, rgba(0,0,0,0.1) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0,0,0,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            background-position: center top;
+        /* Smooth Entrance Animation */
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Latar Belakang Pola Titik (Dots) untuk variasi section */
-        .bg-dots {
-            background-image: radial-gradient(var(--black) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-
-        /* Utilitas Neo-Brutalism */
-        .brutal-border {
-            border: 3px solid var(--black);
-        }
-        
-        .brutal-shadow {
-            box-shadow: 8px 8px 0px 0px var(--black);
-            transition: all 0.2s ease-in-out;
-        }
-        
-        .brutal-shadow-hover:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 12px 12px 0px 0px var(--black);
-        }
-
-        .brutal-btn {
-            border: 3px solid var(--black);
-            box-shadow: 5px 5px 0px 0px var(--black);
-            transition: all 0.2s ease-in-out;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .brutal-btn:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 7px 7px 0px 0px var(--black);
-        }
-        
-        .brutal-btn:active {
-            transform: translate(3px, 3px);
-            box-shadow: 2px 2px 0px 0px var(--black);
-        }
-
-        .brutal-btn-primary {
-            background-color: var(--black);
-            color: var(--white);
-        }
-
-        .brutal-btn-primary:hover {
-            background-color: var(--white);
-            color: var(--black);
-        }
-
-        .brutal-btn-secondary {
-            background-color: var(--white);
-            color: var(--black);
-        }
-
-        .brutal-btn-secondary:hover {
-            background-color: var(--gray);
-        }
-
-        /* Animasi Scroll Reveal */
-        .reveal {
+        .animate-slide-up {
+            animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
-        .reveal.active {
-            opacity: 1;
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+
+        /* Walking Cat Animations */
+        @keyframes catWalkAcross {
+            0% { left: -100px; transform: scaleX(1); }
+            48% { left: calc(100vw + 50px); transform: scaleX(1); }
+            50% { left: calc(100vw + 50px); transform: scaleX(-1); }
+            98% { left: -100px; transform: scaleX(-1); }
+            100% { left: -100px; transform: scaleX(1); }
+        }
+
+        @keyframes catStep {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(-4deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(-5px) rotate(4deg); }
+        }
+
+        @keyframes catTailWag {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-15deg); }
+        }
+
+        /* Kitten & Yarn Animations */
+        @keyframes kittenChase {
+            0%, 100% { transform: translateX(0) scaleX(1); }
+            20% { transform: translateX(30px) scaleX(1); }
+            30% { transform: translateX(30px) scaleX(-1); }
+            50% { transform: translateX(-20px) scaleX(-1); }
+            60% { transform: translateX(-20px) scaleX(1); }
+        }
+
+        @keyframes rollYarn {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            20% { transform: translateX(35px) rotate(180deg); }
+            30% { transform: translateX(35px) rotate(180deg); }
+            50% { transform: translateX(-25px) rotate(-180deg); }
+            60% { transform: translateX(-25px) rotate(-180deg); }
+        }
+
+        /* New Animations for 4 Cats */
+        @keyframes catWalkAcrossReverse {
+            0% { left: calc(100vw + 50px); transform: scaleX(-1); }
+            48% { left: -100px; transform: scaleX(-1); }
+            50% { left: -100px; transform: scaleX(1); }
+            98% { left: calc(100vw + 50px); transform: scaleX(1); }
+            100% { left: calc(100vw + 50px); transform: scaleX(-1); }
+        }
+
+        @keyframes catBreathe {
+            0%, 100% { transform: scale(1) translateY(0); }
+            50% { transform: scale(1.02) translateY(-2px); }
+        }
+
+        .cat-walk-track {
+            position: fixed;
+            bottom: 12px;
+            z-index: 30;
+            animation: catWalkAcross 28s linear infinite;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .cat-body-bounce {
+            animation: catStep 0.45s ease-in-out infinite;
+        }
+
+        .cat-tail {
+            transform-origin: bottom left;
+            animation: catTailWag 1s ease-in-out infinite;
+        }
+
+        .kitten-track {
+            position: fixed;
+            bottom: 10px;
+            right: 15%;
+            z-index: 28;
+            cursor: pointer;
+        }
+
+        /* Floating effects & particles */
+        @keyframes floatUp {
+            0% { opacity: 1; transform: translateY(0) scale(0.8); }
+            100% { opacity: 0; transform: translateY(-50px) scale(1.5); }
+        }
+
+        .floating-element {
+            position: fixed;
+            pointer-events: none;
+            z-index: 50;
+            animation: floatUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            color: white;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        /* Click Sparkles */
+        .sparkle {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background-color: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 10px white;
+            opacity: 0;
+        }
+
+        /* Toast Notification */
+        .toast {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(100px);
+            opacity: 0;
+        }
+        .toast.show {
             transform: translateY(0);
-        }
-
-        /* Lencana Berputar */
-        .spin-slow {
-            animation: spin 15s linear infinite;
-        }
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Filter Hitam Putih untuk Gambar */
-        .img-bw {
-            filter: grayscale(100%) contrast(110%);
+            opacity: 1;
         }
     </style>
 </head>
-<body class="bg-grid antialiased selection:bg-black selection:text-white">
+<body class="animated-bg min-h-screen font-sans flex items-center justify-center py-10 px-4 selection:bg-white selection:text-black overflow-x-hidden">
 
-    <!-- Canvas Background Particles -->
-    <canvas id="bg-canvas" class="fixed inset-0 w-full h-full -z-10 pointer-events-none"></canvas>
+    <!-- tsParticles Background Container -->
+    <div id="tsparticles" class="fixed inset-0 z-0 pointer-events-auto"></div>
 
-    <!-- Navbar -->
-    <nav class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-sm border-b-4 border-black">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center h-20">
-            <!-- Logo/Nama -->
-            <a href="#" class="font-display text-2xl md:text-3xl font-bold tracking-tighter hover:-translate-y-1 transition-transform">
-                Fahreza, S.Kom.
-            </a>
+    <!-- Main Card Container -->
+    <div class="w-full max-w-md relative z-10">
+        
+        <main class="w-full bg-black/60 backdrop-blur-2xl text-white rounded-[2.5rem] p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 relative overflow-hidden animate-slide-up">
             
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex gap-8 font-display font-bold text-lg">
-                <a href="#tentang" class="hover:underline underline-offset-4 decoration-4">Tentang</a>
-                <a href="#karya" class="hover:underline underline-offset-4 decoration-4">Karya</a>
-                <a href="#kemampuan" class="hover:underline underline-offset-4 decoration-4">Kemampuan</a>
-                <a href="#kontak" class="brutal-border px-4 py-1 hover:bg-black hover:text-white transition-colors">Kontak</a>
-            </div>
+            <!-- Subtle Glow inside card -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-40 bg-gradient-to-b from-white/10 to-transparent blur-3xl pointer-events-none"></div>
 
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-3xl focus:outline-none brutal-border p-1 bg-white">
-                <i class="ph-bold ph-list"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-4 border-black flex-col text-center font-display font-bold text-xl divide-y-4 divide-black">
-            <a href="#tentang" class="py-4 hover:bg-gray-100">Tentang</a>
-            <a href="#karya" class="py-4 hover:bg-gray-100">Karya</a>
-            <a href="#kemampuan" class="py-4 hover:bg-gray-100">Kemampuan</a>
-            <a href="#kontak" class="py-4 hover:bg-gray-100">Kontak</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 md:pt-40 md:pb-32 min-h-screen flex items-center overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-            
-            <!-- Kolom Kiri: Teks & Tombol -->
-            <div class="reveal relative z-10">
-                <!-- Ornamen Bintang -->
-                <i class="ph-fill ph-sparkle text-4xl absolute -top-8 -left-4 animate-pulse"></i>
+            <!-- Content Wrapper -->
+            <div>
                 
-                <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 tracking-tighter uppercase">
-                    Halo, Saya <br/>
-                    <span class="inline-block relative mt-2">
-                        Fahreza
-                        <!-- Underline dekoratif -->
-                        <svg class="absolute w-full h-4 -bottom-1 left-0 text-black" viewBox="0 0 200 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.00015 6.99996C39.4678 2.50293 118.847 -2.48202 198.001 6.99996" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
-                    </span>
-                    <br/>
-                    <span class="bg-black text-white px-3 py-1 inline-block mt-4 text-4xl md:text-5xl lg:text-6xl">
-                        Sarjana S1 Informatika
-                    </span>
-                </h1>
-                
-                <p class="text-lg md:text-xl font-medium mb-10 max-w-lg border-l-4 border-black pl-4">
-                    Fokus pada pengembangan web, analisis data, dan rekayasa perangkat lunak. Mengubah baris kode menjadi solusi digital yang fungsional dan estetis.
-                </p>
-                
-                <div class="flex flex-wrap gap-4">
-                    <a href="#karya" class="brutal-btn brutal-btn-primary px-6 md:px-8 py-3 md:py-4 text-sm md:text-base">
-                        Lihat Proyek
-                    </a>
-                    <a href="#kontak" class="brutal-btn brutal-btn-secondary px-6 md:px-8 py-3 md:py-4 text-sm md:text-base">
-                        Hubungi Saya
-                    </a>
-                </div>
-            </div>
-
-            <!-- Kolom Kanan: Foto Profil & Lencana -->
-            <div class="reveal relative flex justify-center lg:justify-end mt-12 lg:mt-0">
-                
-                <!-- Elemen Lencana Melingkar -->
-                <div class="absolute -top-10 -left-6 md:-left-12 z-20 w-32 h-32 md:w-40 md:h-40 bg-black rounded-full flex items-center justify-center text-white brutal-border border-white">
-                    <i class="ph-fill ph-star text-4xl absolute z-10"></i>
-                    <!-- Teks melingkar menggunakan SVG -->
-                    <svg viewBox="0 0 100 100" class="w-full h-full spin-slow" style="padding: 5px;">
-                        <path id="circlePath" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="transparent"/>
-                        <text font-size="11" font-weight="bold" font-family="'Space Grotesk', sans-serif" letter-spacing="2">
-                            <textPath href="#circlePath" startOffset="0%">
-                                S1 INFORMATIKA • LULUSAN TERBAIK • 
-                            </textPath>
-                        </text>
-                    </svg>
-                </div>
-
-                <!-- Foto Profil Bulat Neo-Brutalism -->
-                <div class="relative w-full max-w-md flex justify-center lg:justify-end">
-                    <!-- Ornamen Latar -->
-                    <div class="absolute -bottom-2 right-4 md:right-12 w-24 h-24 bg-white brutal-border rounded-full z-0"></div>
-                    <div class="absolute top-1/2 -right-4 md:-right-8 w-20 h-32 bg-dots border-y-4 border-black z-0"></div>
-                    
-                    <!-- Container Foto Bulat (rounded-full) -->
-                    <div class="brutal-border brutal-shadow brutal-shadow-hover bg-white p-2 relative z-10 w-64 h-64 md:w-80 md:h-80 rounded-full flex-shrink-0">
-                        <img src="watermarked_img_15035162665978375837.jpg" 
-                             alt="Foto Profil" 
-                             class="w-full h-full object-cover rounded-full border-2 border-black">
+                <!-- Live Stats Header -->
+                <div class="flex justify-between items-center mb-6 px-2 animate-slide-up stagger-1">
+                    <div class="flex items-center gap-2 text-xs font-mono text-gray-400">
+                        <i class="fa-regular fa-clock animate-pulse text-white/70"></i>
+                        <span id="live-time">00:00 WIB</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-mono text-gray-400 bg-white/5 px-2 py-1 rounded-md border border-white/5">
+                        <i class="fa-solid fa-eye text-white/70"></i>
+                        <span id="visitor-count">1,204</span> Live
                     </div>
                 </div>
-            </div>
 
-        </div>
-    </section>
-
-    <!-- Marquee Pembatas -->
-    <div class="border-y-4 border-black py-3 bg-black text-white font-display text-xl uppercase tracking-widest overflow-hidden flex whitespace-nowrap">
-        <!-- Container 1 -->
-        <div class="animate-[marquee_20s_linear_infinite] flex shrink-0 items-center font-bold">
-            <span class="mx-6">PENGEMBANGAN WEB</span> <i class="ph-fill ph-star text-sm"></i>
-            <span class="mx-6">ANALISIS DATA</span> <i class="ph-fill ph-star text-sm"></i>
-            <span class="mx-6">REKAYASA PERANGKAT LUNAK</span> <i class="ph-fill ph-star text-sm"></i>
-            <span class="mx-6">PENGEMBANGAN WEB</span> <i class="ph-fill ph-star text-sm"></i>
-            <span class="mx-6">ANALISIS DATA</span> <i class="ph-fill ph-star text-sm"></i>
-            <span class="mx-6">REKAYASA PERANGKAT LUNAK</span> <i class="ph-fill ph-star text-sm"></i>
-        </div>
-        <!-- Container 2 (Duplikat Persis untuk Animasi Mulus Tanpa Jeda) -->
-        <div class="animate-[marquee_20s_linear_infinite] flex shrink-0 items-center font-bold">
-            <span class="mx-6">PENGEMBANGAN WEB</span> <i class="ph-fill ph-star text-sm"></i>
-            <span class="mx-6">ANALISIS DATA</span> <i class="ph-fill ph-star text-sm"></i>
-            <span class="mx-6">REKAYASA PERANGKAT LUNAK</span> <i class="ph-fill ph-star text-sm"></i>
-            <span class="mx-6">PENGEMBANGAN WEB</span> <i class="ph-fill ph-star text-sm"></i>
-            <span class="mx-6">ANALISIS DATA</span> <i class="ph-fill ph-star text-sm"></i>
-            <span class="mx-6">REKAYASA PERANGKAT LUNAK</span> <i class="ph-fill ph-star text-sm"></i>
-        </div>
-    </div>
-    <style>
-        @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-100%); }
-        }
-    </style>
-
-    <!-- Section Tentang -->
-    <section id="tentang" class="py-24 bg-white relative border-b-4 border-black">
-        <div class="absolute inset-0 bg-dots opacity-50 z-0 pointer-events-none"></div>
-        <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-12 items-center relative z-10">
-            
-            <div class="md:col-span-5 reveal">
-                <div class="inline-block brutal-border bg-black text-white px-4 py-2 font-display font-bold uppercase mb-4">
-                    01 // Profil
-                </div>
-                <h2 class="font-display text-5xl md:text-7xl font-bold uppercase tracking-tight mb-6">
-                    Tentang <br> Saya
-                </h2>
-                <div class="w-full h-40 brutal-border brutal-shadow bg-white flex items-center justify-center">
-                    <i class="ph ph-terminal-window text-6xl"></i>
-                </div>
-            </div>
-            
-            <div class="md:col-span-7 reveal delay-100 text-lg md:text-xl space-y-6">
-                <p class="font-medium bg-white brutal-border p-6 brutal-shadow">
-                    Sebagai lulusan baru Program Studi <strong>S1 Informatika</strong>, saya memiliki landasan yang kuat dalam algoritma, struktur data, dan rekayasa perangkat lunak. Saya memiliki ketertarikan mendalam pada pengembangan teknologi web modern dan arsitektur sistem.
-                </p>
-                <p class="font-medium">
-                    Saya percaya bahwa kode yang baik bukan hanya yang berfungsi, tetapi yang bersih (clean code), terstruktur, dan mudah dipelihara. Saya siap membawa semangat belajar dan inovasi ke dalam industri teknologi nyata.
-                </p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Section Kemampuan (Skills) -->
-    <section id="kemampuan" class="py-24 bg-white border-b-4 border-black">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 reveal">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
-                <div>
-                    <div class="inline-block brutal-border bg-black text-white px-4 py-2 font-display font-bold uppercase mb-4">
-                        02 // Keahlian
-                    </div>
-                    <h2 class="font-display text-5xl md:text-7xl font-bold uppercase tracking-tight">Teknologi</h2>
-                </div>
-                <p class="max-w-xs text-right hidden md:block font-medium">Alat dan bahasa yang saya kuasai untuk membangun solusi cerdas.</p>
-            </div>
-            
-            <div class="flex flex-wrap gap-4 md:gap-6">
-                <!-- Tag Kemampuan -->
-                <div class="brutal-border brutal-shadow bg-white px-6 py-4 font-display font-bold text-lg md:text-2xl flex items-center gap-3 hover:bg-black hover:text-white transition-colors cursor-default">
-                    <i class="ph-bold ph-file-html"></i> HTML5 & CSS3
-                </div>
-                <div class="brutal-border brutal-shadow bg-white px-6 py-4 font-display font-bold text-lg md:text-2xl flex items-center gap-3 hover:bg-black hover:text-white transition-colors cursor-default">
-                    <i class="ph-bold ph-file-js"></i> JavaScript (ES6)
-                </div>
-                <div class="brutal-border brutal-shadow bg-white px-6 py-4 font-display font-bold text-lg md:text-2xl flex items-center gap-3 hover:bg-black hover:text-white transition-colors cursor-default">
-                    <i class="ph-bold ph-atom"></i> React.js
-                </div>
-                <div class="brutal-border brutal-shadow bg-white px-6 py-4 font-display font-bold text-lg md:text-2xl flex items-center gap-3 hover:bg-black hover:text-white transition-colors cursor-default">
-                    <i class="ph-bold ph-file-py"></i> Python
-                </div>
-                <div class="brutal-border brutal-shadow bg-white px-6 py-4 font-display font-bold text-lg md:text-2xl flex items-center gap-3 hover:bg-black hover:text-white transition-colors cursor-default">
-                    <i class="ph-bold ph-database"></i> MySQL & Postgres
-                </div>
-                <div class="brutal-border brutal-shadow bg-white px-6 py-4 font-display font-bold text-lg md:text-2xl flex items-center gap-3 hover:bg-black hover:text-white transition-colors cursor-default">
-                    <i class="ph-bold ph-wind"></i> Tailwind CSS
-                </div>
-                <div class="brutal-border brutal-shadow bg-white px-6 py-4 font-display font-bold text-lg md:text-2xl flex items-center gap-3 hover:bg-black hover:text-white transition-colors cursor-default">
-                    <i class="ph-bold ph-git-branch"></i> Git & GitHub
-                </div>
-                <div class="brutal-border brutal-shadow bg-white px-6 py-4 font-display font-bold text-lg md:text-2xl flex items-center gap-3 hover:bg-black hover:text-white transition-colors cursor-default">
-                    <i class="ph-bold ph-figma-logo"></i> Figma UI/UX
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Karya (Projects) -->
-    <section id="karya" class="py-24 bg-gray-100 border-b-4 border-black relative">
-        <!-- Elemen dekoratif background -->
-        <div class="absolute top-10 right-10 grid grid-cols-3 gap-2 opacity-20">
-            <div class="w-4 h-4 bg-black"></div><div class="w-4 h-4 bg-black"></div><div class="w-4 h-4 bg-black"></div>
-            <div class="w-4 h-4 bg-black"></div><div class="w-4 h-4 bg-black"></div><div class="w-4 h-4 bg-black"></div>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-            <div class="inline-block brutal-border bg-black text-white px-4 py-2 font-display font-bold uppercase mb-4 reveal">
-                03 // Portofolio
-            </div>
-            <h2 class="font-display text-5xl md:text-7xl font-bold mb-16 uppercase tracking-tight reveal">Karya <br> Pilihan</h2>
-            
-            <!-- Grid diubah menjadi 2 Kolom -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 max-w-5xl">
-                
-                <!-- Kartu Proyek 1: Fotografer, Videografer -->
-                <div class="brutal-border brutal-shadow bg-white flex flex-col items-center text-center p-8 md:p-10 reveal group">
-                    <!-- Thumbnail Foto Bulat -->
-                    <div class="w-48 h-48 md:w-56 md:h-56 brutal-border brutal-shadow bg-white p-2 rounded-full mb-8 relative group-hover:-translate-y-3 transition-transform duration-300">
-                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop" 
-                             alt="Fotografer & Videografer" 
-                             class="w-full h-full object-cover rounded-full">
-                        <!-- Badge Ikon -->
-                        <div class="absolute bottom-0 right-2 w-12 h-12 bg-black text-white rounded-full brutal-border border-white flex items-center justify-center">
-                            <i class="ph-fill ph-camera text-2xl"></i>
+                <!-- Profile Section -->
+                <header class="flex flex-col items-center mb-6 relative">
+                    <!-- Profile Picture -->
+                    <div class="relative group cursor-pointer animate-slide-up stagger-2 mb-4">
+                        <div class="absolute -inset-1.5 bg-white rounded-full blur-sm opacity-20 group-hover:opacity-60 transition duration-500 group-hover:scale-105"></div>
+                        <div class="relative p-1.5 bg-white rounded-full shadow-2xl transition-transform duration-500 group-hover:scale-105 z-10">
+                            <img src="profil.jpeg" alt="Muhammad Fajar" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover">
+                        </div>
+                        <!-- Verified Badge -->
+                        <div class="absolute bottom-2 right-2 bg-black rounded-full p-[3px] z-20 border-2 border-white shadow-lg group-hover:scale-110 transition-transform duration-500">
+                            <i class="fa-solid fa-certificate text-white text-base"></i>
+                            <i class="fa-solid fa-check text-black text-[10px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
                         </div>
                     </div>
                     
-                    <h3 class="font-display text-3xl font-bold mb-4 uppercase">1. Fotografer, Videografer</h3>
-                    <p class="text-gray-700 mb-8 font-medium text-lg flex-grow">
-                        Layanan dokumentasi visual profesional untuk berbagai acara, sesi pemotretan, dan produksi video kreatif dengan hasil *editing* kualitas tinggi.
+                    <!-- Name & Bio -->
+                    <h1 class="text-2xl sm:text-3xl font-bold tracking-widest uppercase mb-1 text-center animate-slide-up stagger-3 drop-shadow-md">Muhammad Fajar</h1>
+                    <p class="text-gray-400 text-xs sm:text-sm tracking-widest uppercase text-center animate-slide-up stagger-4 px-2 mb-4 font-semibold">
+                        Fotografer <span class="text-white/30 mx-1">|</span> Videografer
                     </p>
-                    <a href="#" class="brutal-btn brutal-btn-secondary text-center py-4 w-full block text-lg">Lihat Karya Visual</a>
-                </div>
+                </header>
 
-                <!-- Kartu Proyek 2: Pembuatan Website & Aplikasi -->
-                <div class="brutal-border brutal-shadow bg-white flex flex-col items-center text-center p-8 md:p-10 reveal delay-100 group">
-                    <!-- Thumbnail Foto Bulat -->
-                    <div class="w-48 h-48 md:w-56 md:h-56 brutal-border brutal-shadow bg-white p-2 rounded-full mb-8 relative group-hover:-translate-y-3 transition-transform duration-300">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1000&auto=format&fit=crop" 
-                             alt="Pembuatan Website & Aplikasi" 
-                             class="w-full h-full object-cover rounded-full">
-                        <!-- Badge Ikon -->
-                        <div class="absolute bottom-0 right-2 w-12 h-12 bg-black text-white rounded-full brutal-border border-white flex items-center justify-center">
-                            <i class="ph-fill ph-code text-2xl"></i>
-                        </div>
-                    </div>
+                <!-- Links Section -->
+                <nav class="w-full flex flex-col gap-3">
                     
-                    <h3 class="font-display text-3xl font-bold mb-4 uppercase">2. Pembuatan Website dan Aplikasi</h3>
-                    <p class="text-gray-700 mb-8 font-medium text-lg flex-grow">
-                        Pengembangan perangkat lunak kustom dari nol. Menghasilkan website dan aplikasi fungsional berbasis teknologi web modern yang tangguh.
+                    <!-- Button 1: Portfolio -->
+                    <a href="#" class="btn-link animate-slide-up stagger-5 group flex items-center justify-between p-2 pr-6 rounded-full border border-white/20 bg-black/40 hover:bg-white hover:text-black text-white transition-all duration-300 ease-out shadow-lg hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] backdrop-blur-sm relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                        <div class="flex items-center gap-4 relative z-10">
+                            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors duration-300 border border-white/10 group-hover:border-black">
+                                <i class="fa-solid fa-briefcase text-lg group-hover:scale-110 transition-transform duration-300"></i>
+                            </div>
+                            <div class="flex flex-col text-left">
+                                <span class="font-bold text-sm tracking-widest uppercase">Portfolio</span>
+                                <span class="text-[10px] text-gray-400 group-hover:text-gray-600 transition-colors uppercase tracking-wider font-semibold">Kenal Lebih Lanjut</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform duration-300 text-lg relative z-10"></i>
+                    </a>
+
+                    <!-- Button 2: Instagram -->
+                    <a href="https://www.instagram.com/sleepycat.z/" class="btn-link animate-slide-up stagger-6 group flex items-center justify-between p-2 pr-6 rounded-full border border-white/20 bg-black/40 hover:bg-white hover:text-black text-white transition-all duration-300 ease-out shadow-lg hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] backdrop-blur-sm relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                        <div class="flex items-center gap-4 relative z-10">
+                            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors duration-300 border border-white/10 group-hover:border-black">
+                                <i class="fa-brands fa-instagram text-lg group-hover:scale-110 transition-transform duration-300"></i>
+                            </div>
+                            <div class="flex flex-col text-left">
+                                <span class="font-bold text-sm tracking-widest uppercase">Instagram</span>
+                                <span class="text-[10px] text-gray-400 group-hover:text-gray-600 transition-colors uppercase tracking-wider font-semibold">Daily Foto & Video</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform duration-300 text-lg relative z-10"></i>
+                    </a>
+
+                    <!-- Button 3: TikTok -->
+                    <a href="https://www.tiktok.com/@sleepycatz2" class="btn-link animate-slide-up stagger-6 group flex items-center justify-between p-2 pr-6 rounded-full border border-white/20 bg-black/40 hover:bg-white hover:text-black text-white transition-all duration-300 ease-out shadow-lg hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] backdrop-blur-sm relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                        <div class="flex items-center gap-4 relative z-10">
+                            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors duration-300 border border-white/10 group-hover:border-black">
+                                <i class="fa-brands fa-tiktok text-lg group-hover:scale-110 transition-transform duration-300"></i>
+                            </div>
+                            <div class="flex flex-col text-left">
+                                <span class="font-bold text-sm tracking-widest uppercase">TikTok</span>
+                                <span class="text-[10px] text-gray-400 group-hover:text-gray-600 transition-colors uppercase tracking-wider font-semibold">Tips & Tricks</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform duration-300 text-lg relative z-10"></i>
+                    </a>
+
+                </nav>
+                
+                <!-- Interactive Action Bar -->
+                <div class="mt-8 pt-6 border-t border-white/10 flex justify-center gap-4 animate-slide-up stagger-6">
+                    
+                    <!-- Like Button -->
+                    <button id="like-btn" class="flex flex-col items-center gap-1 group relative cursor-pointer outline-none">
+                        <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/20 group-hover:border-white/40 transition-all group-active:scale-95">
+                            <i class="fa-solid fa-heart text-gray-400 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <span class="text-[9px] uppercase tracking-widest text-gray-500 font-bold">Like</span>
+                        <span id="like-count" class="absolute -top-2 -right-2 bg-white text-black text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-black hidden">1</span>
+                    </button>
+
+                    <!-- Coffee Button -->
+                    <button id="coffee-btn" class="flex flex-col items-center gap-1 group relative cursor-pointer outline-none">
+                        <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/20 group-hover:border-white/40 transition-all group-active:scale-95">
+                            <i class="fa-solid fa-mug-hot text-gray-400 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <span class="text-[9px] uppercase tracking-widest text-gray-500 font-bold">Coffee</span>
+                    </button>
+
+                    <!-- Share Button -->
+                    <button id="share-btn" class="flex flex-col items-center gap-1 group relative cursor-pointer outline-none">
+                        <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/20 group-hover:border-white/40 transition-all group-active:scale-95">
+                            <i class="fa-solid fa-share-nodes text-gray-400 group-hover:text-white transition-colors"></i>
+                        </div>
+                        <span class="text-[9px] uppercase tracking-widest text-gray-500 font-bold">Share</span>
+                    </button>
+
+                </div>
+
+                <!-- Footer -->
+                <footer class="mt-8 text-center animate-slide-up stagger-6">
+                    <p class="text-gray-500 text-[10px] font-semibold tracking-widest uppercase flex items-center justify-center gap-2">
+                        <span>&copy; 2026</span>
+                        <span class="w-1 h-1 bg-gray-600 rounded-full"></span>
+                        <span>Sleepycatz</span>
                     </p>
-                    <a href="#" class="brutal-btn brutal-btn-secondary text-center py-4 w-full block text-lg">Lihat Proyek Kode</a>
-                </div>
+                </footer>
 
-            </div>
-        </div>
-    </section>
+            </div> <!-- End Content Wrapper -->
+        </main>
+    </div> <!-- End Main Card Container -->
 
-    <!-- Section Kontak -->
-    <section id="kontak" class="py-24 bg-white relative">
-        <div class="max-w-4xl mx-auto px-6 md:px-12 text-center reveal">
-            <div class="inline-block brutal-border bg-black text-white px-4 py-2 font-display font-bold uppercase mb-4">
-                04 // Hubungi
-            </div>
-            <h2 class="font-display text-5xl md:text-7xl font-bold mb-6 uppercase tracking-tight">Mari Berdiskusi</h2>
-            <p class="text-xl font-medium mb-12 border-b-4 border-black pb-8 inline-block">
-                Tertarik untuk berkolaborasi atau merekrut saya? Kirimkan pesan!
-            </p>
-            
-            <form class="text-left space-y-6 max-w-2xl mx-auto bg-white p-8 brutal-border brutal-shadow">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block font-bold mb-2 uppercase text-sm font-display">Nama Lengkap</label>
-                        <input type="text" placeholder="Budi Santoso" class="w-full brutal-border p-4 bg-gray-50 focus:outline-none focus:bg-white focus:ring-4 focus:ring-black transition-shadow font-medium">
-                    </div>
-                    <div>
-                        <label class="block font-bold mb-2 uppercase text-sm font-display">Email</label>
-                        <input type="email" placeholder="budi@email.com" class="w-full brutal-border p-4 bg-gray-50 focus:outline-none focus:bg-white focus:ring-4 focus:ring-black transition-shadow font-medium">
-                    </div>
-                </div>
-                <div>
-                    <label class="block font-bold mb-2 uppercase text-sm font-display">Pesan Anda</label>
-                    <textarea rows="5" placeholder="Tuliskan detail tawaran atau pertanyaan Anda..." class="w-full brutal-border p-4 bg-gray-50 focus:outline-none focus:bg-white focus:ring-4 focus:ring-black transition-shadow resize-none font-medium"></textarea>
-                </div>
-                <button type="button" class="w-full brutal-btn brutal-btn-primary py-5 text-xl tracking-widest mt-4">
-                    Kirim Pesan <i class="ph-bold ph-paper-plane-tilt inline-block ml-2"></i>
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="border-t-4 border-black bg-black text-white pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
-            <div class="text-center md:text-left">
-                <div class="font-display text-3xl font-bold tracking-tighter mb-2">
-                    Fahreza, S.Kom.
-                </div>
-                <p class="text-gray-400 font-medium max-w-xs">Mengembangkan solusi digital fungsional dengan pendekatan minimalis.</p>
-            </div>
-            
-            <div class="flex gap-4">
-                <!-- TikTok Button -->
-                <a href="#" class="text-black bg-white brutal-border border-white p-3 hover:-translate-y-2 hover:shadow-[4px_4px_0_0_#fff] transition-all" aria-label="TikTok">
-                    <i class="ph-fill ph-tiktok-logo text-2xl"></i>
-                </a>
-                <!-- Instagram Button -->
-                <a href="#" class="text-black bg-white brutal-border border-white p-3 hover:-translate-y-2 hover:shadow-[4px_4px_0_0_#fff] transition-all" aria-label="Instagram">
-                    <i class="ph-fill ph-instagram-logo text-2xl"></i>
-                </a>
-            </div>
-        </div>
+    <!-- PET AREA (Bottom Screen) -->
+    
+    <!-- 1. Momo (Kucing Putih Berjalan L -> R) -->
+    <div class="interactive-cat cat-walk-track group" title="Klik Momo! 🐾">
+        <div class="absolute -top-5 left-1/2 -translate-x-1/2 text-[9px] font-bold bg-white/20 backdrop-blur-md px-2 py-0.5 rounded-full text-white border border-white/30 whitespace-nowrap shadow-lg z-40">Momo</div>
+        <div class="cat-bubble absolute -top-12 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] font-extrabold px-2 py-1 rounded-full opacity-0 transition-all duration-300 pointer-events-none shadow-[0_0_10px_rgba(255,255,255,0.5)] whitespace-nowrap z-50">Meow!</div>
         
-        <div class="max-w-7xl mx-auto px-6 md:px-12 mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-sm font-medium text-gray-400 gap-4">
-            <p>&copy; 2024 Fahreza. Seluruh hak cipta dilindungi.</p>
-            <p>Dibuat dengan <i class="ph-fill ph-heart text-white align-middle"></i> & Kode Bersih.</p>
+        <div class="cat-avatar cat-body-bounce transition-transform duration-200">
+            <svg class="w-16 h-16 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]" viewBox="0 0 100 100" fill="currentColor">
+                <path class="cat-tail" d="M 25 65 C 10 60, 5 40, 15 30 C 20 25, 25 30, 22 35 C 15 42, 18 55, 28 60 Z" />
+                <rect x="30" y="65" width="6" height="15" rx="3" />
+                <rect x="42" y="65" width="6" height="15" rx="3" />
+                <ellipse cx="50" cy="60" rx="28" ry="16" />
+                <rect x="58" y="65" width="6" height="15" rx="3" />
+                <rect x="70" y="65" width="6" height="15" rx="3" />
+                <circle cx="75" cy="45" r="18" />
+                <path d="M 62 35 L 58 15 L 70 29 Z" />
+                <path d="M 78 28 L 90 15 L 86 33 Z" />
+                <path d="M 63 32 L 60 20 L 68 29 Z" fill="#ffb6c1" />
+                <path d="M 79 29 L 87 20 L 84 32 Z" fill="#ffb6c1" />
+                <g stroke="#000" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M 80 41 Q 82.5 38 85 41" />
+                    <path d="M 65 41 Q 67.5 38 70 41" />
+                    <path d="M 72 46 Q 73.5 49 75 46 Q 76.5 49 78 46" stroke-width="1.5" />
+                </g>
+                <circle cx="75" cy="45" r="2" fill="#ffb6c1" /> 
+                <g stroke="#000" stroke-width="1" stroke-linecap="round">
+                    <path d="M 61 44 L 54 42 M 61 46 L 52 46 M 61 48 L 54 50" />
+                    <path d="M 89 44 L 96 42 M 89 46 L 98 46 M 89 48 L 96 50" />
+                </g>
+            </svg>
         </div>
-    </footer>
-
-    <!-- Chatbot Widget -->
-    <div id="chatbot-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-        <!-- Chat Window -->
-        <div id="chat-window" class="hidden w-[90vw] sm:w-96 max-w-[400px] bg-white brutal-border brutal-shadow mb-4 flex-col overflow-hidden transition-all duration-300">
-            <!-- Header -->
-            <div class="bg-black text-white p-4 flex justify-between items-center border-b-4 border-black">
-                <div class="flex items-center gap-2">
-                    <i class="ph-fill ph-robot text-2xl animate-pulse"></i>
-                    <h3 class="font-display font-bold uppercase tracking-wide">Asisten Fahreza</h3>
-                </div>
-                <button id="close-chat" class="hover:text-gray-300 transition-transform hover:scale-110">
-                    <i class="ph-bold ph-x text-xl"></i>
-                </button>
-            </div>
-            <!-- Messages -->
-            <div id="chat-messages" class="p-4 h-80 overflow-y-auto flex flex-col gap-3 bg-white" style="background-image: radial-gradient(var(--black) 1px, transparent 1px); background-size: 20px 20px;">
-                <!-- Bot initial message -->
-                <div class="self-start bg-white brutal-border px-4 py-3 max-w-[85%] border-b-4 border-r-4 border-black text-sm font-medium">
-                    Halo! 👋 Aku asisten virtual Fahreza. Mau ngobrol apa nih? Tanya soal portofolio, skill, atau request project juga boleh banget!
-                </div>
-            </div>
-            <!-- Input Area -->
-            <div class="p-3 bg-white border-t-4 border-black flex gap-2">
-                <input type="text" id="chat-input" placeholder="Ketik pesan seru di sini..." class="flex-grow brutal-border px-3 py-2 text-sm focus:outline-none focus:bg-gray-100 transition-colors font-medium">
-                <button id="send-chat" class="brutal-btn brutal-btn-primary px-4 py-2 flex items-center justify-center">
-                    <i class="ph-bold ph-paper-plane-right"></i>
-                </button>
-            </div>
-        </div>
-        
-        <!-- Toggle Button -->
-        <button id="chat-toggle" class="w-16 h-16 bg-white text-black rounded-full brutal-border border-4 brutal-shadow flex items-center justify-center hover:-translate-y-2 hover:bg-black hover:text-white transition-all group">
-            <i class="ph-fill ph-chat-centered-text text-3xl group-hover:scale-110 transition-transform"></i>
-        </button>
     </div>
 
-    <!-- JavaScript -->
+    <!-- 2. Blacky (Kucing Hitam Berjalan R -> L) -->
+    <div class="interactive-cat group" style="position: fixed; bottom: 25px; z-index: 29; animation: catWalkAcrossReverse 34s linear infinite; animation-delay: -10s; cursor: pointer; user-select: none;" title="Klik Blacky! 🐾">
+        <div class="absolute -top-5 left-1/2 -translate-x-1/2 text-[9px] font-bold bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-white border border-white/20 whitespace-nowrap shadow-lg z-40">Blacky</div>
+        <div class="cat-bubble absolute -top-12 left-1/2 -translate-x-1/2 bg-[#1a1a1a] text-white text-[10px] font-extrabold px-2 py-1 rounded-full opacity-0 transition-all duration-300 pointer-events-none shadow-[0_0_10px_rgba(0,0,0,0.8)] border border-white/20 whitespace-nowrap z-50">Purrr..</div>
+        
+        <div class="cat-avatar cat-body-bounce transition-transform duration-200">
+            <!-- Warna Hitam/Gelap (#1a1a1a) -->
+            <svg class="w-14 h-14 text-[#1a1a1a] drop-shadow-[0_0_6px_rgba(255,255,255,0.2)]" viewBox="0 0 100 100" fill="currentColor">
+                <path class="cat-tail" d="M 25 65 C 10 60, 5 40, 15 30 C 20 25, 25 30, 22 35 C 15 42, 18 55, 28 60 Z" />
+                <rect x="30" y="65" width="6" height="15" rx="3" />
+                <rect x="42" y="65" width="6" height="15" rx="3" />
+                <ellipse cx="50" cy="60" rx="28" ry="16" />
+                <rect x="58" y="65" width="6" height="15" rx="3" />
+                <rect x="70" y="65" width="6" height="15" rx="3" />
+                <circle cx="75" cy="45" r="18" />
+                <path d="M 62 35 L 58 15 L 70 29 Z" />
+                <path d="M 78 28 L 90 15 L 86 33 Z" />
+                <path d="M 63 32 L 60 20 L 68 29 Z" fill="#666" />
+                <path d="M 79 29 L 87 20 L 84 32 Z" fill="#666" />
+                <!-- Mata & Mulut Terang (Putih/Abu) agar terlihat -->
+                <g stroke="#ccc" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M 80 41 Q 82.5 38 85 41" />
+                    <path d="M 65 41 Q 67.5 38 70 41" />
+                    <path d="M 72 46 Q 73.5 49 75 46 Q 76.5 49 78 46" stroke-width="1.5" />
+                </g>
+                <circle cx="75" cy="45" r="2" fill="#ffb6c1" /> 
+                <!-- Kumis Abu-abu terang -->
+                <g stroke="#888" stroke-width="1" stroke-linecap="round">
+                    <path d="M 61 44 L 54 42 M 61 46 L 52 46 M 61 48 L 54 50" />
+                    <path d="M 89 44 L 96 42 M 89 46 L 98 46 M 89 48 L 96 50" />
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <!-- 3. Mugi (Anak Kucing + Benang, Kanan Bawah) -->
+    <div class="interactive-cat group" style="position: fixed; bottom: 10px; right: 15%; z-index: 28; cursor: pointer; display: flex; align-items: flex-end; gap: 4px;" title="Klik Mugi!">
+        <div class="absolute -top-4 left-4 text-[9px] font-bold bg-[#f59e0b]/30 backdrop-blur-md px-2 py-0.5 rounded-full text-[#fef3c7] border border-[#f59e0b]/50 whitespace-nowrap shadow-lg z-40">Mugi</div>
+        <div class="cat-bubble absolute -top-10 left-4 bg-white text-orange-500 text-[10px] font-extrabold px-2 py-1 rounded-full opacity-0 transition-all duration-300 pointer-events-none shadow-lg whitespace-nowrap z-50">Nyan~</div>
+        
+        <div class="cat-avatar transition-transform duration-200" style="animation: kittenChase 4s infinite linear;">
+            <!-- Warna Oranye (#f59e0b) -->
+            <svg class="w-10 h-10 text-[#f59e0b] drop-shadow-[0_0_5px_rgba(245,158,11,0.4)]" viewBox="0 0 100 100" fill="currentColor">
+                <path class="cat-tail" d="M 20 60 C 10 50, 15 30, 25 35 C 28 37, 24 42, 22 40 C 15 35, 12 45, 25 55 Z" />
+                <ellipse cx="45" cy="65" rx="22" ry="14" />
+                <rect x="28" y="70" width="5" height="12" rx="2.5" />
+                <rect x="38" y="70" width="5" height="12" rx="2.5" />
+                <rect x="52" y="70" width="5" height="12" rx="2.5" />
+                <rect x="62" y="70" width="5" height="12" rx="2.5" />
+                <circle cx="70" cy="50" r="16" />
+                <path d="M 58 40 L 58 20 L 68 35 Z" />
+                <path d="M 72 35 L 85 22 L 82 40 Z" />
+                <path d="M 60 38 L 60 25 L 66 35 Z" fill="#ffb6c1" />
+                <path d="M 74 36 L 81 27 L 79 39 Z" fill="#ffb6c1" />
+                <circle cx="65" cy="48" r="3.5" fill="#000"/>
+                <circle cx="77" cy="48" r="3.5" fill="#000"/>
+                <circle cx="64" cy="47" r="1" fill="#fff"/>
+                <circle cx="76" cy="47" r="1" fill="#fff"/>
+                <circle cx="71" cy="52" r="1.5" fill="#ffb6c1" />
+                <path d="M 68 53 Q 71 56 74 53" stroke="#000" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                <g stroke="#000" stroke-width="0.75" stroke-linecap="round">
+                    <path d="M 58 48 L 52 46 M 58 50 L 50 50 M 58 52 L 52 54" />
+                    <path d="M 84 48 L 90 46 M 84 50 L 92 50 M 84 52 L 90 54" />
+                </g>
+            </svg>
+        </div>
+        <div style="animation: rollYarn 4s infinite linear;">
+             <!-- Bola Benang Warna Merah -->
+             <svg class="w-6 h-6 text-red-500 drop-shadow-[0_0_5px_rgba(239,68,68,0.4)]" viewBox="0 0 100 100" fill="currentColor">
+                <circle cx="50" cy="50" r="40" />
+                <path d="M 20 40 Q 50 20 80 40 M 15 50 Q 50 40 85 50 M 20 60 Q 50 60 80 60" stroke="#000" stroke-width="2" fill="none" opacity="0.3"/>
+                <path d="M 30 20 Q 20 50 40 85 M 50 15 Q 40 50 60 85 M 70 20 Q 60 50 75 80" stroke="#000" stroke-width="2" fill="none" opacity="0.3"/>
+             </svg>
+        </div>
+    </div>
+
+    <!-- 4. Moli (Anak Kucing Oranye Bersantai, Kiri Bawah) -->
+    <div class="interactive-cat group" style="position: fixed; bottom: 12px; left: 10%; z-index: 28; cursor: pointer; animation: catBreathe 3s ease-in-out infinite;" title="Klik Moli!">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 text-[9px] font-bold bg-[#f59e0b]/30 backdrop-blur-md px-2 py-0.5 rounded-full text-[#fef3c7] border border-[#f59e0b]/50 whitespace-nowrap shadow-lg z-40">Moli</div>
+        <div class="cat-bubble absolute -top-10 left-1/2 -translate-x-1/2 bg-white text-orange-500 text-[10px] font-extrabold px-2 py-1 rounded-full opacity-0 transition-all duration-300 pointer-events-none shadow-lg whitespace-nowrap z-50">Zzz...</div>
+        
+        <div class="cat-avatar transition-transform duration-200">
+            <!-- Warna Oranye (#f59e0b) -->
+            <svg class="w-10 h-10 text-[#f59e0b] drop-shadow-[0_0_5px_rgba(245,158,11,0.4)]" viewBox="0 0 100 100" fill="currentColor" style="transform: scaleX(-1);">
+                <!-- Mirror Horizontal so Moli faces right -->
+                <path class="cat-tail" style="animation: catTailWag 2s ease-in-out infinite;" d="M 20 60 C 10 50, 15 30, 25 35 C 28 37, 24 42, 22 40 C 15 35, 12 45, 25 55 Z" />
+                <ellipse cx="45" cy="65" rx="22" ry="14" />
+                <rect x="28" y="70" width="5" height="12" rx="2.5" />
+                <rect x="38" y="70" width="5" height="12" rx="2.5" />
+                <rect x="52" y="70" width="5" height="12" rx="2.5" />
+                <rect x="62" y="70" width="5" height="12" rx="2.5" />
+                <circle cx="70" cy="50" r="16" />
+                <path d="M 58 40 L 58 20 L 68 35 Z" />
+                <path d="M 72 35 L 85 22 L 82 40 Z" />
+                <path d="M 60 38 L 60 25 L 66 35 Z" fill="#ffb6c1" />
+                <path d="M 74 36 L 81 27 L 79 39 Z" fill="#ffb6c1" />
+                <!-- Mata Tidur -->
+                <path d="M 62 48 Q 65 45 68 48" stroke="#000" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                <path d="M 74 48 Q 77 45 80 48" stroke="#000" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                <circle cx="71" cy="52" r="1.5" fill="#ffb6c1" />
+                <g stroke="#000" stroke-width="0.75" stroke-linecap="round">
+                    <path d="M 58 48 L 52 46 M 58 50 L 50 50 M 58 52 L 52 54" />
+                    <path d="M 84 48 L 90 46 M 84 50 L 92 50 M 84 52 L 90 54" />
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast fixed bottom-10 left-1/2 -translate-x-1/2 bg-white text-black px-6 py-3 rounded-full font-bold text-xs tracking-widest uppercase shadow-[0_0_20px_rgba(255,255,255,0.4)] z-50 flex items-center gap-2">
+        <i class="fa-solid fa-circle-check text-green-500"></i>
+        <span id="toast-msg">Link Copied!</span>
+    </div>
+
+    <!-- Hidden input for clipboard copy fallback -->
+    <input type="text" id="clipboard-input" value="https://budisantoso.com" class="fixed -top-full -left-full opacity-0 pointer-events-none">
+
     <script>
-        // Toggle Menu Mobile
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
-            
-            // Ubah ikon hamburger ke close
-            const icon = btn.querySelector('i');
-            if (menu.classList.contains('hidden')) {
-                icon.classList.remove('ph-x');
-                icon.classList.add('ph-list');
-            } else {
-                icon.classList.remove('ph-list');
-                icon.classList.add('ph-x');
-            }
-        });
-
-        // Tutup menu mobile saat link diklik
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-                menu.classList.remove('flex');
-                const icon = btn.querySelector('i');
-                icon.classList.remove('ph-x');
-                icon.classList.add('ph-list');
-            });
-        });
-
-        // Animasi Scroll Reveal menggunakan Intersection Observer
-        const revealElements = document.querySelectorAll('.reveal');
-
-        const revealOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    return;
-                } else {
-                    entry.target.classList.add('active');
-                    // Stop observing setelah animasi berjalan agar tetap muncul
-                    observer.unobserve(entry.target); 
-                }
-            });
-        }, revealOptions);
-
-        revealElements.forEach(el => {
-            revealOnScroll.observe(el);
-        });
-
-        // --- Canvas Particle Animation ---
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-
-        function resizeCanvas() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        const particles = [];
-        const shapes = ['dot', 'square', 'cross'];
-        // Warna subtil hitam dan abu-abu transparan
-        const colors = ['rgba(0, 0, 0, 0.15)', 'rgba(0, 0, 0, 0.25)', 'rgba(100, 100, 100, 0.2)'];
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.size = Math.random() * 6 + 4; // Ukuran 4px hingga 10px
-                this.speedX = (Math.random() - 0.5) * 0.7; // Kecepatan horizontal lambat
-                this.speedY = (Math.random() - 0.5) * 0.7; // Kecepatan vertikal lambat
-                this.shape = shapes[Math.floor(Math.random() * shapes.length)];
-                this.color = colors[Math.floor(Math.random() * colors.length)];
-                this.angle = Math.random() * Math.PI * 2;
-                this.spin = (Math.random() - 0.5) * 0.02; // Putaran perlahan
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                this.angle += this.spin;
-
-                // Memantul/muncul kembali dari sisi yang berlawanan (wrap-around)
-                if (this.x > width + 20) this.x = -20;
-                else if (this.x < -20) this.x = width + 20;
-                if (this.y > height + 20) this.y = -20;
-                else if (this.y < -20) this.y = height + 20;
-            }
-
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.angle);
-                ctx.fillStyle = this.color;
-                ctx.strokeStyle = this.color;
-                ctx.lineWidth = 2;
-
-                if (this.shape === 'dot') {
-                    ctx.beginPath();
-                    ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
-                    ctx.fill();
-                } else if (this.shape === 'square') {
-                    // Hanya menggambar garis luar (outline)
-                    ctx.strokeRect(-this.size / 2, -this.size / 2, this.size, this.size);
-                } else if (this.shape === 'cross') {
-                    ctx.beginPath();
-                    ctx.moveTo(-this.size / 1.2, 0);
-                    ctx.lineTo(this.size / 1.2, 0);
-                    ctx.moveTo(0, -this.size / 1.2);
-                    ctx.lineTo(0, this.size / 1.2);
-                    ctx.stroke();
-                }
-                ctx.restore();
-            }
-        }
-
-        // Tentukan jumlah partikel berdasarkan lebar layar (responsif)
-        const particleCount = window.innerWidth < 768 ? 25 : 60;
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-
-        function animateCanvas() {
-            // Menghapus frame sebelumnya
-            ctx.clearRect(0, 0, width, height);
-            
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            
-            requestAnimationFrame(animateCanvas);
-        }
-
-        // Jalankan animasi
-        animateCanvas();
-
-        // --- Chatbot Logic (Gemini API) ---
-        const chatToggle = document.getElementById('chat-toggle');
-        const chatWindow = document.getElementById('chat-window');
-        const closeChat = document.getElementById('close-chat');
-        const chatInput = document.getElementById('chat-input');
-        const sendChat = document.getElementById('send-chat');
-        const chatMessages = document.getElementById('chat-messages');
-
-        let chatHistory = [];
-        const systemPrompt = "Bertindaklah sebagai asisten virtual Fahreza yang ramah, asik, kreatif, sedikit jenaka, dan tidak membosankan. Fahreza adalah seorang Sarjana S1 Informatika yang ahli dalam Web Development, Data Analysis, serta berprofesi sebagai Fotografer dan Videografer. Jawab pertanyaan pengguna dalam bahasa Indonesia dengan gaya kasual, gaul (tapi tetap sopan), dan gunakan emoji secukupnya agar suasana hidup. Jika ditanya harga/rate, arahkan untuk menghubungi Fahreza langsung via form kontak. Buat jawaban yang ringkas dan engaging.";
-
-        // Toggle chat visibility
-        chatToggle.addEventListener('click', () => {
-            chatWindow.classList.toggle('hidden');
-            chatWindow.classList.toggle('flex');
-            if(!chatWindow.classList.contains('hidden')) {
-                chatInput.focus();
-            }
-        });
-
-        closeChat.addEventListener('click', () => {
-            chatWindow.classList.add('hidden');
-            chatWindow.classList.remove('flex');
-        });
-
-        // Function to append messages to the chat box
-        function appendMessage(text, sender, isLoading = false) {
-            const msgDiv = document.createElement('div');
-            // Neo-brutalist styling for chat bubbles
-            const baseClasses = "px-4 py-3 text-sm font-medium brutal-border border-b-4 border-r-4 border-black mb-2 max-w-[85%] break-words";
-            const senderClasses = sender === 'user' 
-                ? "self-end bg-black text-white" 
-                : "self-start bg-white text-black";
-            
-            msgDiv.className = `${baseClasses} ${senderClasses}`;
-            msgDiv.innerHTML = text.replace(/\n/g, '<br>');
-            
-            const id = 'msg-' + Date.now();
-            if (isLoading) {
-                msgDiv.id = id;
-                msgDiv.innerHTML = '<span class="animate-pulse">Bot sedang mengetik...</span>';
-            }
-
-            chatMessages.appendChild(msgDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-            return id;
-        }
-
-        async function sendMessage() {
-            const text = chatInput.value.trim();
-            if (!text) return;
-
-            // Tambahkan pesan user ke UI
-            appendMessage(text, 'user');
-            chatInput.value = '';
-
-            // Tampilkan indikator loading
-            const loadingId = appendMessage('', 'bot', true);
-
-            // Siapkan payload untuk API
-            chatHistory.push({ role: "user", parts: [{ text: text }] });
-            
-            const payload = {
-                contents: chatHistory,
-                systemInstruction: {
-                    parts: [{ text: systemPrompt }]
-                }
-            };
-
-            const apiKey = "AIzaSyBRKG51fbV7t5MjwgSKJgbgztsfMOx22zA"; // API key akan otomatis disisipkan di sisi server
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+        // --- 1. PARTICLES INIT ---
+        window.addEventListener('load', function () {
+            if (typeof tsParticles !== 'undefined') {
+                tsParticles.load("tsparticles", {
+                    background: { color: { value: "transparent" } },
+                    fpsLimit: 60,
+                    interactivity: {
+                        events: {
+                            onHover: { enable: true, mode: "grab" },
+                            onClick: { enable: true, mode: "push" },
+                            resize: true,
+                        },
+                        modes: {
+                            grab: { distance: 200, links: { opacity: 0.3 } },
+                            push: { quantity: 2 },
+                        },
+                    },
+                    particles: {
+                        color: { value: ["#ffffff", "#888888", "#444444"] },
+                        links: {
+                            color: "#ffffff", distance: 150, enable: true, opacity: 0.1, width: 1,
+                        },
+                        move: {
+                            direction: "none", enable: true, outModes: { default: "bounce" }, random: true, speed: 0.5, straight: false,
+                        },
+                        number: { density: { enable: true, area: 800 }, value: 60 },
+                        opacity: { value: 0.4 },
+                        shape: { type: "circle" },
+                        size: { value: { min: 1, max: 2.5 } },
+                    },
+                    detectRetina: true,
                 });
-                
-                const result = await response.json();
-                
-                // Hapus indikator loading
-                const loadingElement = document.getElementById(loadingId);
-                if(loadingElement) loadingElement.remove();
+            }
+        });
 
-                if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts) {
-                    const botText = result.candidates[0].content.parts[0].text;
-                    appendMessage(botText, 'bot');
-                    chatHistory.push({ role: "model", parts: [{ text: botText }] });
-                } else {
-                    appendMessage("Waduh, otak bot-ku lagi nge-hang sebentar nih. Coba tanya lagi ya! 🤖🔧", 'bot');
-                }
+        // --- 2. LIVE STATS (Clock & Visitors) ---
+        const timeEl = document.getElementById('live-time');
+        const visitorEl = document.getElementById('visitor-count');
+        let visitors = 1204;
 
-            } catch (error) {
-                const loadingElement = document.getElementById(loadingId);
-                if(loadingElement) loadingElement.remove();
-                appendMessage("Aduh, gagal nyambung ke sinyal utama nih. Cek koneksi internetmu ya! 📶", 'bot');
+        setInterval(() => {
+            const now = new Date();
+            // Assuming server/user is in Indonesia, format simple HH:MM
+            const timeString = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+            timeEl.innerText = `${timeString} WIB`;
+            
+            // Randomly fluctuate visitors
+            if(Math.random() > 0.5) visitors += Math.floor(Math.random() * 3);
+            else visitors -= Math.floor(Math.random() * 2);
+            visitorEl.innerText = visitors.toLocaleString();
+        }, 1000); // update every second for clock, visitors change subtly
+
+        // --- 6. ACTION BUTTONS (Like, Coffee, Share) ---
+        let likes = 0;
+        const likeBtn = document.getElementById('like-btn');
+        const likeCount = document.getElementById('like-count');
+        const likeIcon = document.querySelector('#like-btn i');
+
+        likeBtn.addEventListener('click', (e) => {
+            likes++;
+            likeCount.innerText = likes;
+            likeCount.classList.remove('hidden');
+            likeIcon.classList.remove('fa-regular', 'text-gray-400');
+            likeIcon.classList.add('fa-solid', 'text-white');
+            
+            // Pop +1 effect
+            spawnFloatingElement(e.clientX, e.clientY, '+1', 'text-white font-bold text-sm');
+            spawnSparks(e.clientX, e.clientY);
+        });
+
+        document.getElementById('coffee-btn').addEventListener('click', (e) => {
+            spawnFloatingElement(e.clientX, e.clientY, '☕', 'text-2xl');
+            showToast("Redirecting to Coffee...");
+        });
+
+        document.getElementById('share-btn').addEventListener('click', (e) => {
+            // Fallback clipboard logic using input (iFrame friendly)
+            const input = document.getElementById('clipboard-input');
+            input.select();
+            input.setSelectionRange(0, 99999); // For mobile devices
+            try {
+                document.execCommand('copy');
+                showToast("Link Copied to Clipboard!");
+            } catch (err) {
+                showToast("Failed to copy");
+            }
+        });
+
+        // Toast Helper
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toast-msg');
+        let toastTimeout;
+        
+        function showToast(msg) {
+            toastMsg.innerText = msg;
+            toast.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        // --- 7. GLOBAL CLICK SPARKS & FLOATING FX ---
+        function spawnFloatingElement(x, y, content, classes) {
+            const el = document.createElement('div');
+            el.className = `floating-element ${classes}`;
+            el.innerHTML = content;
+            el.style.left = `${x - 10}px`;
+            el.style.top = `${y - 20}px`;
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 1000);
+        }
+
+        function spawnSparks(x, y) {
+            for(let i=0; i<6; i++) {
+                const spark = document.createElement('div');
+                spark.className = 'sparkle';
+                spark.style.left = `${x}px`;
+                spark.style.top = `${y}px`;
+                
+                // Random outward direction
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 20 + Math.random() * 30;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                spark.animate([
+                    { transform: 'translate(0,0) scale(1)', opacity: 1 },
+                    { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+                ], { duration: 600, easing: 'ease-out' });
+
+                document.body.appendChild(spark);
+                setTimeout(() => spark.remove(), 600);
             }
         }
 
-        // Event listeners untuk tombol kirim
-        sendChat.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
+        // Add click sparks globally, except on the pet area so it doesn't overlap weirdly
+        document.addEventListener('click', (e) => {
+            if(e.target.closest('.interactive-cat')) return;
+            spawnSparks(e.clientX, e.clientY);
         });
+
+        // --- 8. CAT INTERACTION (Momo, Blacky, Mugi, Moli) ---
+        const interactiveCats = document.querySelectorAll('.interactive-cat');
+        const catIcons = ["🐾", "❤️", "✨", "🐟", "🐈"];
+
+        interactiveCats.forEach(cat => {
+            cat.addEventListener('click', (e) => {
+                // Tampilkan Speech Bubble
+                const bubble = cat.querySelector('.cat-bubble');
+                if (bubble) {
+                    bubble.style.opacity = '1';
+                    setTimeout(() => bubble.style.opacity = '0', 1500);
+                }
+
+                // Animasi Melompat
+                const avatar = cat.querySelector('.cat-avatar');
+                if (avatar) {
+                    avatar.style.transform = "translateY(-20px) scale(1.1)";
+                    setTimeout(() => {
+                        avatar.style.transform = "translateY(0) scale(1)";
+                    }, 250);
+                }
+
+                // Efek Icon & Sparkle yang melayang
+                const icon = catIcons[Math.floor(Math.random() * catIcons.length)];
+                spawnFloatingElement(e.clientX, e.clientY, icon, 'text-xl drop-shadow-[0_0_5px_rgba(255,255,255,0.8)] z-50');
+                spawnSparks(e.clientX, e.clientY);
+            });
+        });
+
     </script>
 </body>
 </html>
